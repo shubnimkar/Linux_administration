@@ -1,0 +1,187 @@
+
+
+                                                      Linux Assignment Lab 2 (Solutions)               
+
+
+
+1: Redirect the content of the help document ls, into a file called as lsdoc.
+->man ls > lsdoc
+
+
+2: Display the content of the lsdoc page wise.
+->more lsdoc
+
+
+3: Display only the first 4 lines of the lsdoc file.
+->head -4 lsdoc
+
+
+4: Display only the last 7 lines of the file lsdoc.
+->tail -7 lsdoc
+
+
+5: Remove the file lsdoc.
+->rm lsdoc
+
+
+6: There will be B’day celebration from the friends file, find how many B’day parties will be held. 
+   If two of the friends have the B’date on the same day, then we will be having one party on that day.
+->cut -d":" -f2 b.txt| uniq -c |wc -l
+
+
+7: Display the lines starting with Ma, in the file friends.
+->grep "^ma" friends
+
+
+8: Display the lines starting with Ma, ending with i or ending with id, in the file friends.
+-> egrep -f patt friends or  egrep -e ^ma -e i$ -e id$ friends
+
+
+9: Print all the files and the directory files from the current directory across all the sub directories, along with its path
+->ls -R
+
+
+10: Print only the Directory files.
+->ls -d */
+
+
+11: Display the files starting with chap, along with its path.
+->find . -type f -name "chap*"
+
+
+12: Sort the file friends in ascending order of names.
+->sort friends
+
+
+13: Display the contents of the file friends in uppercase letters.
+->tr "[a-z]" "[A-z]" < friends
+
+
+14: Store the contents of your home directory in a file called dir.
+->ls -l > dir
+
+
+15: From the above file dir, display the file permissions and the name of the file only.
+->ls -l dir | cut -d " " -f1,9
+
+
+16: From the same dir file, store only the file names in a file called files.
+->tr -s " " < dir | cut -d " " -f9 > files
+
+
+17: From the same dir file, store only the permissions of files in a file called perms. 
+->tr -s " " < dir | cut -d " " -f1 > perms
+
+
+18: From the same dir file, store only the file sizes in a file called sizes.
+->tr -s " " < dir | cut -d " " -f5 > sizes
+
+
+19: Display the file names, sizes and permissions from your directory in that order.
+->paste files sizes perms (or) tr -s " " < dir | cut -d " " -f1,5,9
+
+
+20: Display the number of users working on the system.
+->users | wc -w
+
+
+21: Find out the smallest file in your directory.
+->tr -s " " < dir | sort -t" " -n -k5 |head -1 | cut -d" " -f9
+
+
+22: Display the total number of lines present in the file friends.
+->wc -l friends
+
+
+23:Create the following fixed record format files (with “|” delimiter between fields) with the structure given below,
+and populate them with relevant data use these files to solve following questions
+emp.lst: Empid(4),Name(18),Designation(9),Dept(10),Date of Birth(8),Salary(5) dept.lst : Dept.Code(2),Name(10),Head of Dept’s id(4)
+desig.lst: Designation Abbr.(2), Name (9)
+1.	Find the record lengths of each file.
+2.	Display only the date of birth and salary of the last employee record.
+3.	Extract only employee names and designations. (Use column specifications). Save output as cfile1.
+4.	Extract Emp.id, dept, dob and salary. (Use field specifications). Save output as cfile2.
+5.	Fix the files cfile1 and cfile2 laterally, along with the delimiter.
+6.	Sort the emp.lst file in reverse order of Emp. Names.
+7.	Sort the emp.lst file on the salary field, and store the result in file srtf.
+8.	Sort the emp.lst file on designation followed by name.
+9.	Sort the emp.lst file on the year of birth.
+10.	Find out the various designations in the employee file. Eliminate duplicate listing of designations.
+11.	Find the non-repeated designation in the employee file.
+12.	Find the number of employees with various designations in the employee file.
+13.	Create a listing of the years in which employees were born in, along with number of employees born in that year.
+14.	Use nl command to create a code table for designations to include designation code (Start with dept. code 100, and subsequently 105, 110 …).
+
+->1.wc -l emp.lst dept.lst desig.lst
+ 2. tail -1 emp.lst | cut -d"|" -f5,6
+ 3. cut -d "|" -f2,3 emp.lst > cfile1
+ 4. cut -d "|" -f1,4-6 emp.lst > cfile2
+ 5. paste -d "|" cfile1 cfile
+ 6. sort -t"|" -r -k2 emp.lst
+ 7. sort -t"|" -k6 emp.lst > srtf
+ 8. sort -t"|" -k3 emp.lst | sort -t"|" -k1
+ 9. cat emp.lst|sort -t "|" -k5|sort -t "/" -n -k3
+ 10. cut -d"|" -f3 emp.lst | uniq -u #########
+ 11. cut -d"|" -f3 emp.lst | uniq -u 
+ 12. cut -d"|" -f3 emp.lst | uniq -c
+ 13. cut -d"|" -f5 emp.lst| cut -d"/" -f3 |uniq -c
+ 14. cut -d"|" -f1 dept.lst|nl -v100 -i5
+
+
+
+24: PCS has its offices at Pune, TTC and Mumbai. The employees’ data is stored separately for each office.
+Create appropriate files (with same record structure as in previous assignment) and populate with relevant data.
+1.	List details about an employee ‘Manu Sharma’ in the Mumbai office.
+2.	List only the Emp.Id. And Dept. of Manu Sharma.
+3.	List details of all managers in all offices. (O/P should not contain file names.).
+4.	Find the number of S.E. in each office.
+5.	List only the Line Numbers and Employee names of employees in ‘H/W’ in Pune file.
+6.	Obtain a listing of all employees other than those in ‘HR’ in the Mumbai file and save contents in a file ‘nonhr’.
+7.	Find the name and designation of the youngest person who is not a manager.
+8.	Display only the filename(s) in which details of employee by the name ‘Seema Sharma’ can be found.
+9.	Locate the lines containing saxena and saksena in the Mumbai office.
+10.	Find the number of managers who earn between 50000 and 99999 in the Pune office.
+11.	List names of employees whose id is in the range 2000 – 2999: in Pune Office; in all offices.
+12.	Locate people having same month of birth as current month in Pune office.
+13.	List details of all employees other than those of HR and Admin in file F1.
+14.	Locate for all Dwivedi, Trivedi, Chaturvedi in Pune file.
+15.	Obtain a list of people in HR, Admin and Recr. depts. sorted in reverse order of the dept.
+
+->1. grep "Manu Sharma" mumbai
+ 2. grep "Manu Sharma" mumbai|cut -d"|" -f1,4
+ 3. grep "manager" pune mumbai ttc | cut -d":" -f2
+ 4. grep "senior executive" pune mumbai ttc | wc -l
+ 5. cut -d"|" -f2 pune | nl
+ 6. grep -v "hr" mumbai > nonhr
+ 7. 
+ 8. grep "Seema Sharma" pune mumbai ttc| cut -d":" -f1
+ 9. fgrep -e saxena -e saksena mumbai
+ 10. grep "manager" pune| cut -d"|" -f6 |grep "[5-9][0-9]\{4\}"|wc -l
+ 11. grep "^2[0-9]\{3\}" pune
+ 12.
+ 13. fgrep -v -e"hr" -e"admin" pune mumbai ttc|cut -d":" -f2 >F1
+ 14. grep "[dct].*vedi" pune
+ 15. fgrep -e"hr" -e"admin" pune mumbai ttc| sort -t"|" -k3|cut -d"|" -f2
+
+
+
+25: Write a command sequence that prints out date information in this order: time, day of week, day number, month, year:
+    13:44:42 IST Sun 16 Sept 1994
+->date "+%T IST %a %d %b %Y"
+
+
+26: Write a command sequence that prints the names of the files in the current directory in the descending order of number of links
+->
+
+
+27: Write a command sequence that prints only names of files in current working directory in alphabetical order
+->ls | sort  -t " " -k1 ###
+
+
+28: Write a command sequence to print names and sizes of all the files in current working directory in order of size
+->ls -l >random
+    tr -s " " < random | cut -d" " -f9,5| sort -t" " -n -k1
+
+
+29: Determine the latest file updated by the user
+->ls -c |head -1

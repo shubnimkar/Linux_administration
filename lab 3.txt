@@ -1,0 +1,20 @@
+﻿
+                                               Linux Assignment Lab 3(Solutions)
+
+
+1.Create a file using Vi. Enter the following text:
+A network is a group of computers that can communicate with each other, share resources, and access remote hosts or other networks. 
+Netware is a computer network operating system designed to connect, manage, and maintain a network and its services.
+Some of the network services are Netware Directory Services (NDS), file system, printing and security.
+a.Change the word “Netware” in the second line to “Novell Netware”.
+b.Insert the text “(such as hard disks and printers)” after “share resources” in the first line.
+c.Append the following text to the file:
+“Managing NDS is a fundamental administrator role because NDS provides a single point for
+ accessing and managing most network resources.”
+
+->a)sed '2 s/Netware/Novel netware' filename
+b)sed 's/\<resources\>/&  (such as hard disks and printers)/' que1
+c)Managing NDS is a fundamental administrator role because NDS provides a single
+  point for accessing and managing most network resources.”>>filename
+
+

@@ -1,0 +1,15 @@
+
+                                         Linux Assignment Lab 5(Solution)
+
+
+1.Find out the PID of the processes that are activated by you
+->ps | cut -d" " -f1
+
+
+2.Find out the information about all the processes that are currently active
+->ps -A
+
+
+3.Start a different process in the background. Find out the status of the background process using the PID of the same.
+->ps -p 30108
+

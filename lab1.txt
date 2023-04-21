@@ -1,0 +1,164 @@
+﻿
+
+                                                        Linux Assignment lab 1 (Solutions)
+
+
+1.To display the current working directory, the command is.
+->pwd
+
+2.Display the path to and name of your HOME directory.
+->pwd
+
+3.Display the login name using which you have logged into the system.
+->Who am i
+
+4.Display the hidden files of your current directory.
+->ls -a
+
+5.List the names of all the files in your home directory
+->ls
+
+6.Using the long listing format to display the files in your directory
+->ls -l
+
+
+7.List the files beginning with chap followed by any number or any lower case alphabet. 
+(Example, it should display all files whose names are like chap1, chap2, chap3 ……., chapa,ahapb,chapc,……..)
+->ls-l chap*
+
+8.Give appropriate command to create a directory called C_prog under your home directory. (Note: Check the directory using ls)
+->mkdir c_prog
+
+
+9.Create the following directories under your home directory. (Note: Check using ls) newdir newdirectory
+->mkdir newdir newdirectory
+
+10.List the names of all the files, including the contents of the sub directories under your home directory.
+->ls -R
+
+11.Remove the directory called newdirectory from your working directory.
+->rmdir newdirectory
+
+12.Create a directory called temp under your home directory.
+->mkdir temp
+
+13.Remove the directory called newdir under your home directory and verify the above with the help of the directory listing command.
+->rmdir newdir
+	ls
+
+14.Create another directory directorynew under the temp directory.
+->mkdir temp/directorynew
+
+15.Change the directory to your home directory.
+->cd .
+
+16.From your home directory, change the directory to directorynew using relative and absolute path.
+->relative path- cd temp/directorynew
+   Absolute path- cd /home/hpcsa/temp/directorynew
+
+17.Remove the directory called c_prog, which is in your home directory.
+->rmdir c_prog
+
+18.Change to the directory /etc and display the files present in it.
+->cd /etc ls -l
+
+19.List the names of all the files that begin with a dot in the /usr/bin directory.
+->cd /usr/bin ls .*
+
+20.Create a file first.unix with the following contents. 
+    Hi! Good Morning everybody.
+    Welcome to the First exercise on UNIX.
+    Hope you enjoy doing the assignments.
+->cat>first.unix
+
+21.Copy the file first.unix in your home directory to first.unics.
+    (Note: checked using ls, first.unix file also should exist along with first.unics)
+->cp first.unix first.unics
+
+22.List the contents of first.unix and first.unics with a single command.
+->cat first.unix first.unics
+
+23.Create a new directory under the temp directory.
+->mkdir temp/newdir
+
+24.From your home directory, copy all the files to the directory created under the temp sub directory.
+->cp *.txt temp/newdir
+
+25.Move the file first.unix to the directory temp as second.unix
+->mv first.unix second.unix temp/newdir
+
+
+26.Remove the file called first.unics from the home directory.
+->rm first.unics
+
+27.Change your directory to temp and issue the command rm *. What do you observe?
+->cd temp rm *
+
+28.Move all files whose names end with a, c and o to the HOME directory.
+->mv *a *c *o /home/hpcsa
+
+29.Copy all files that end with a ‘UNIX’ to the temp directory.
+->cp *unix temp
+
+30.Issuing a single command, remove all the files from the directory temp and the directory itself.
+->rm -r temp
+
+31.Try commands cp and mv with invalid number of arguments and note the results.
+-> cp 20 30 40 
+   target ‘40’ is not a directory
+   mv 10 20 30 40
+   mv: target ‘40’ is not a directory
+
+32.Use the cat command to create a file friends, with the following data:
+
+Madhu	6966456	09/07/68
+Jamil	2345215	08/09/67
+Ajay	5546785	01/04/66
+Mano	7820022	09/07/68
+David	8281292	09/09/60
+Simmi	7864563	12/12/70
+Navin	2224311	30/05/68
+The fields should be separated by a tab.
+->cat>friends.txt
+
+33.Display contents of the file friends.
+->cat friend.txt
+
+34.Copy contents of friends to newfriend without using the cp command.
+->cat friends>newfriends
+
+35.Display contents of the file friends and newfriends in a single command.
+->cat friends newfriends
+
+36.Find all users currently working on the system and store the output in a file named as users.
+->who>cat>users
+
+37.Append contents of friends file to the file, users.
+->cat friends >> users
+
+38.Display current system date and time and record your observations. How is the time displayed?
+->date
+   Sat Aug 24 16:52:05 IST 2019
+   (HH:MM:SS)
+   date "+%T"
+
+39.Display calendar for the month and year of your birth.
+->cal 06 1997
+
+40.Try following commands and record your observations. date “+ %”
+date “+%m” date “+%D”
+date “+%/%Training Activity” date “+%Training Activity” date “+%r”
+Viewing the File System and Granting/Removing Permissions (Note: Create required files if doesn’t
+exists.)
+1.Give the execute permission for the user for a file chap1
+2.Give the execute permission for user, group and others for a file add.c
+3.Remove the execute permission from user, give read permission to group and others for a file aa.c
+4.Give execute permission for users for a.c, kk.c, nato and myfile using single command
+5.Change the directory to root directory. Check the system directories, like bin, etc, usr etc
+
+-> date “+ %”  -  %
+   date “+%m”  -  08
+   date “+%D”  -  08/24/19
+   date “+%/%Training Activity”  - %/16:57:36raning Activity
+   date “+%Training Activity”    -16:57:28raning Activity
+   date “+%r”  -04:58:18 PM IST

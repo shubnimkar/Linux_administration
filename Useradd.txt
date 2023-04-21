@@ -1,0 +1,98 @@
+
+                                              Linux Assignment Lab 5(Solutions)
+
+A.
+
+1.Create 2 groups project1, project2
+  ->  groupadd project1
+    groupadd project2
+
+
+2.In each group add 3 users -u11,-u12,-u13 in project1 and s1,s2,s3 in project2
+->useradd u11
+   useradd u13
+   useradd u12
+   usermod -g project1 u11
+   usermod -g project1 u12
+   usermod -g project1 u13  
+   useradd s1
+   useradd s2
+   useradd s3
+   usermod -g project2 s1
+   usermod -g project2 s2
+   usermod -g project2 s3
+
+
+3.For every user in project1 group password should be changed when first login and change after every 30 days
+->chage -d 0 u11
+   chage -d 30 u11
+   chage -d 0 u12
+   chage -d 30 u12
+   chage -d 0 u13
+   chage -d 30 u13
+
+
+4.For every user in project2 group password should be changed when first login and change after every 15days
+->chage -d 0 s1
+   chage -d 15 s1
+   chage -d 0 s2
+   chage -d 15 s2
+   chage -d 0 s3
+   chage -d 15 s3
+
+
+5.Create new group manager with gid 23445
+->groupadd manager -g 23445
+
+
+6.Create 3 new users m1,m2 and m3 add them in manager group
+->useradd m1
+   useradd m2
+   useradd m3
+   usermod -g manager m1
+   usermod -g manager m2
+   usermod -g manager m3
+
+
+7.Change the password policy for m2 to expire after 15 days
+->chage -d 15 m2
+
+
+8.Force all users to change their password on first login 
+-> chage -d 0 m1
+   chage -d 0 m2
+   chage -d 0 m3
+
+
+
+
+B.
+
+1.Change user and other permissions to r and w
+->chmod 606 nandu.lst
+
+
+2.Add w permission for all on file1
+->chmod u+w,g+w,o+w file1
+
+
+3.Grant ownership of mydir and subdirectories to m2 user
+->chown m2 mydir
+
+
+4.Switch user to m3
+->su – m3
+
+
+5.Create 3 empty files file1,file2,file3 using single command
+->touch file1 file2 file3
+
+
+6.Change the umask to 0021
+->umask 0021
+
+
+7.Create 2 files mfile1 and mfile2 and check the permissions of the file
+->touch file1 file2
+   ls -l mfile1 mfile2
+
