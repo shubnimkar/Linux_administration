@@ -1,1 +1,0 @@
-# Linux_administration_basic
